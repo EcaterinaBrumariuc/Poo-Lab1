@@ -2,13 +2,11 @@ import java.util.Scanner;
 
 public class Main {
 
-    // Funcție care verifică dacă un număr este prim
-    public static boolean isPrime(int x) {
-        if (x < 2) return false;
-        if (x == 2) return true;
-        if (x % 2 == 0) return false;
-        for (int d = 3; d * d <= x; d += 2) {
-            if (x % d == 0) return false;
+    // Funcție simplă care verifică dacă un număr este prim
+    public static boolean verificarePrim(int n) {
+        if (n < 2) return false;
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) return false;
         }
         return true;
     }
@@ -17,19 +15,19 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         // Mesaj pentru utilizator
-        System.out.print("Scrieți numărul de elemente n (1 ≤ n ≤ 1000): ");
+        System.out.print("Scrieți numărul de elemente n : ");
         int n = sc.nextInt();
 
         int[] a = new int[n];
 
-        System.out.println("Scrieți cele " + n + " numere naturale (mai mici decât 1.000.000):");
+        System.out.println("Scrieți cele " + n + " numere naturale :");
         for (int i = 0; i < n; i++) {
             a[i] = sc.nextInt();
         }
 
         // căutăm ultimul element prim
         for (int i = n - 1; i >= 0; i--) {
-            if (isPrime(a[i])) {
+            if (verificarePrim(a[i])) {
                 a[i] = 0;
                 break;
             }
